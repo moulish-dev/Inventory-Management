@@ -6,21 +6,21 @@ class Products(models.Model):
     
     code = models.CharField( max_length=50, unique=True)
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=500)
-    type = models.CharField(max_length=30)
-    brand = models.CharField(max_length=50)
-    category = models.CharField(max_length=50)
-    price = models.DecimalField(max_digits=10, decimal_places=2,null=True)
-    stock = models.IntegerField( null=True)
-    product_color = models.CharField(max_length = 30, null=True)
+    description = models.CharField(max_length=500,null=True, blank=True)
+    type = models.CharField(max_length=30,null=True, blank=True)
+    brand = models.CharField(max_length=50,null=True, blank=True)
+    category = models.CharField(max_length=50,null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2,null=True, blank=True)
+    stock = models.IntegerField( null=True, blank=True)
+    product_color = models.CharField(max_length = 30, null=True, blank=True)
 
 
 class ShopAdmin(models.Model):
 
     name = models.CharField(max_length=40)
-    description = models.CharField(max_length=100)
-    address = models.CharField(max_length=200)
-    contact = models.CharField(max_length=30)
+    description = models.CharField(max_length=100,null=True)
+    address = models.CharField(max_length=200,null=True)
+    contact = models.CharField(max_length=30,null=True)
 
 
 class Orders(models.Model):
@@ -32,5 +32,5 @@ class OrderItem(models.Model):
 
     order_id = models.ForeignKey(Orders, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Products, on_delete=models.CASCADE)
-    quantity = models.PositiveBigIntegerField()
-    quantity_type=models.CharField(max_length=20)
+    quantity = models.PositiveBigIntegerField(null=True)
+    quantity_type=models.CharField(max_length=20, null=True)

@@ -12,7 +12,16 @@ class Add_ProductsForm(forms.ModelForm):
 
     class Meta:
         model=Products
-        fields = ['code', 'name','description','type','brand','category','price','stock','product_color']
+        # fields = ['code', 'name','description','type','brand','category','price','stock','product_color']
+        fields = '__all__'
+
+        def __init__(self, *args, **kwargs):
+            super(Add_ProductsForm, self).__init__(*args, **kwargs)
+            for field_name, field in self.field.items:
+                if field_name not in ['code','name']:
+                    field.required = False
+
+        
 
 class Create_Order(forms.ModelForm):
 
@@ -24,4 +33,4 @@ class Add_OrderItem(forms.ModelForm):
 
     class Meta:
         model=OrderItem
-        fields=['product', 'quantity','quantityType']
+        fields=['product_id', 'quantity','quantity_type']
