@@ -34,3 +34,6 @@ class Add_OrderItem(forms.ModelForm):
     class Meta:
         model=OrderItem
         fields=['product_id', 'quantity','quantity_type']
+        
+class CSV_fileUpload(forms.Form):
+    file = forms.FileField(label="Upload Excel - CSV File")

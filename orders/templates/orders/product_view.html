@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body{background:#eee}.ratings i{font-size: 16px;color: red}.strike-text{color: red;text-decoration: line-through}.product-image{width: 100%}.dot{height: 7px;width: 7px;margin-left: 6px;margin-right: 6px;margin-top: 3px;background-color: blue;border-radius: 50%;display: inline-block}.spec-1{color: #938787;font-size: 15px}h5{font-weight: 400}.para{font-size: 16px}
+        </style>
+    </head>
+    <body>
+        {% include "orders/header.html" %}
+        <div class="container mt-5 mb-5">
+            <div class="d-flex justify-content-center row">
+                <div class="col-md-10">
+                    {% for product in products %}
+                    <!-- Product Card -->
+                    <div class="row p-2 bg-white border rounded">
+                        {% if product.image %}
+                            <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{ product.image.url }}"></div>
+                        {% else %}
+                            <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{% static 'images/No_Image_Available.jpg' %}"></div>
+                        {% endif %}
+                        <div class="col-md-6 mt-1">
+                            <h5>{{ product.name }}</h5>
+                            <div class="d-flex flex-row">
+                                <div class="ratings mr-2"></div><span>Code: {{ product.code }}</span>
+                            </div>
+                            <div class="mt-1 mb-1 spec-1"><span>{{ product.brand }}</span><span class="dot"></span><span> {{ product.category }} </span><span class="dot"></span><span> {{ product.type }} <br></span></div>
+                            {% comment %} <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div> {% endcomment %}
+                            <p class="text-justify text-truncate para mb-0">{{ product.description }}<br><br></p>
+                        </div>
+                        <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                            <div class="d-flex flex-row align-items-center">
+                                <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                            </div>
+                            <h6 class="text-success">Free shipping</h6>
+                            <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm" type="button">Details</button><button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button></div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No products available</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" async defer></script>
+        <script src="" async defer></script>
+    </body>
+</html>

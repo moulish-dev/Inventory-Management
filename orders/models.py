@@ -13,6 +13,7 @@ class Products(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2,null=True, blank=True)
     stock = models.IntegerField( null=True, blank=True)
     product_color = models.CharField(max_length = 30, null=True, blank=True)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)   
 
 
 class ShopAdmin(models.Model):
