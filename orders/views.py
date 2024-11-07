@@ -59,6 +59,7 @@ def file_upload(request):
             csv_file = request.FILES['file']
             try:
                 data = pd.read_csv(csv_file)
+                data = data.fillna('')
                 for _, row in data.iterrows():
                     # Check for missing required fields (e.g., 'code', 'name') before processing
                     if pd.isna(row['code']) or pd.isna(row['name']):

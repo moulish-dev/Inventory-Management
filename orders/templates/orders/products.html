@@ -26,10 +26,9 @@
                 
                 {% if product.image %}
                             <td><img style="height: 50; width: 100px;" src="{{ product.image.url }}"></td>
-
-                            <td></td>
                 {% else %}
-                            <td><img style="height: 50; width: 100px;" src="{% static 'images/No_Image_Available.jpg' %}"></td>
+                            {% comment %} No Image Available {% endcomment %}
+                            <td><img style="height: 50px; width: 100px;" src="{% static 'images/no_image.jpg' %}"></td>
                 {% endif %}
                 
                 <!-- Button for initating adding product modal -->
